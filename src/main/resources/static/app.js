@@ -12,7 +12,7 @@ let Post = {
   }
 }
 
-let Posts = {
+let PostsService = {
   posts: {
     list: [],
     fetch: function () {
@@ -20,32 +20,48 @@ let Posts = {
         method: 'GET',
         url: '/api/posts'
       }).then(function (response) {
-        Posts.posts.list = response
+        PostsService.posts.list = response
       })
     }
   }
 }
 
-let Index = {
-  onInit: Posts.posts.fetch(),
+let PostsRoute = {
+  oninit: PostsService.posts.fetch(),
+  oncreate: function (vnode) {
+    setActivePage('#posts')
+  },
   view: function (vnode) {
-    return Posts.posts.list.map(function (post) {
-      return m('div', [
-        m('strong', post.title),
-        m('p', post.text),
-        m('i', post.date)
-      ])
+    return PostsService.posts.list.map(function (post) {
+      return m('div.card', m('div.card-body', [
+        m('div.card-title', [
+          m('h5', post.title),
+          m('div', post.date)
+        ]),
+        m('p.card-text', post.text),
+        m('a.btn.btn-primary', {href: '#!/posts/' /* + post.id */}, 'Read more')
+      ]))
     })
   }
 }
 
-let About = {
+let AboutRoute = {
+  oncreate: function (vnode) {
+    setActivePage('#about')
+  },
   view: function () {
     return m('p', 'This app is an example for Spring Boot, WebJars and SPAs!')
   }
 }
 
 m.route(container, '/posts', {
-  '/posts': Index,
-  '/about': About
+  '/posts': PostsRoute,
+  '/about': AboutRoute
 })
+
+function setActivePage (activePage) {
+  document.querySelectorAll('.active').forEach(node => {
+    node.classList.remove('active')
+  })
+  document.querySelector(activePage).classList.add('active')
+}

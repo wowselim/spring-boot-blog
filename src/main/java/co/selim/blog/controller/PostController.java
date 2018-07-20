@@ -24,6 +24,26 @@ public class PostController {
                         .withTitle("Mithril JS")
                         .withText("Playing around with Mithril JS")
                         .withDate(LocalDate.now().minusDays(1))
+                        .build(),
+                BlogPost.BlogPostBuilder.aBlogPost()
+                        .withTitle("Mithril JS")
+                        .withText("Playing around with Mithril JS")
+                        .withDate(LocalDate.now().minusDays(2))
+                        .build(),
+                BlogPost.BlogPostBuilder.aBlogPost()
+                        .withTitle("Mithril JS")
+                        .withText("Playing around with Mithril JS")
+                        .withDate(LocalDate.now().minusDays(3))
+                        .build(),
+                BlogPost.BlogPostBuilder.aBlogPost()
+                        .withTitle("Mithril JS")
+                        .withText("Playing around with Mithril JS")
+                        .withDate(LocalDate.now().minusDays(4))
+                        .build(),
+                BlogPost.BlogPostBuilder.aBlogPost()
+                        .withTitle("Mithril JS")
+                        .withText("Playing around with Mithril JS")
+                        .withDate(LocalDate.now().minusDays(5))
                         .build()
         );
     }
